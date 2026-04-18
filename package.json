@@ -1,16 +1,14 @@
 {
-  "name": "lab5",
+  "name": "lab6",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Quote Finder with CRUD for authors and quotes",
+  "main": "index.mjs",
   "scripts": {
-  "start": "node index.mjs"
-}
+    "start": "node index.mjs"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
   "dependencies": {
     "ejs": "^5.0.1",
     "express": "^5.2.1",
