@@ -1,1 +1,44 @@
+<%- include("partials/header.ejs") %>
 
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h1 class="h2 mb-0">Authors</h1>
+  <a href="/authors/new" class="btn btn-primary">Add New Author</a>
+</div>
+
+<div class="card shadow-sm">
+  <div class="card-body p-0">
+    <div class="table-responsive">
+      <table class="table table-hover align-middle mb-0">
+        <thead class="table-light">
+          <tr>
+            <th>Name</th>
+            <th>Profession</th>
+            <th>Country</th>
+            <th>Sex</th>
+            <th class="text-end">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for (let a of authors) { %>
+            <tr>
+              <td><strong><%= a.firstName %> <%= a.lastName %></strong></td>
+              <td><%= a.profession %></td>
+              <td><%= a.country %></td>
+              <td><%= a.sex %></td>
+              <td class="text-end">
+                <a href="/authors/edit/<%= a.authorId %>" class="btn btn-sm btn-outline-primary">Edit</a>
+                <form action="/authors/delete/<%= a.authorId %>" method="post" class="d-inline">
+                  <button class="btn btn-sm btn-outline-danger" onclick="return confirm('Delete this author and their quotes?')">
+                    Delete
+                  </button>
+                </form>
+              </td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<%- include("partials/footer.ejs") %>
