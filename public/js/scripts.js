@@ -1,13 +1,30 @@
-let links = document.querySelectorAll(".authorLink");
+const links = document.querySelectorAll(".authorLink");
+const authorInfo = document.querySelector("#authorInfo");
 
-for (let link of links) {
-  link.addEventListener("click", async function(e) {
-    e.preventDefault();
+for (const link of links) {
+  link.addEventListener("click", async function () {
+    const authorId = this.dataset.authorid;
 
-    let response = await fetch(`/api/author/${this.id}`);
-    let data = await response.json();
+    authorInfo.innerHTML = "Loading...";
 
-    document.querySelector("#authorInfo").innerHTML =
-      data[0].firstName + " " + data[0].lastName;
+    const response = await fetch(`/api/author/${authorId}`);
+    const data = await response.json();
+
+    authorInfo.innerHTML = `
+      <div class="row g-4">
+        <div class="col-md-4">
+          <img src="${data.portrait}" alt="${data.firstName} ${data.lastName}" class="img-fluid rounded shadow-sm">
+        </div>
+        <div class="col-md-8">
+          <h3 class="mb-3">${data.firstName} ${data.lastName}</h3>
+          <p><strong>Profession:</strong> ${data.profession || ""}</p>
+          <p><strong>Country:</strong> ${data.country || ""}</p>
+          <p><strong>Sex:</strong> ${data.sex || ""}</p>
+          <p><strong>Date of Birth:</strong> ${data.dob || ""}</p>
+          <p><strong>Date of Death:</strong> ${data.dod || ""}</p>
+          <p><strong>Biography:</strong><br>${data.biography || ""}</p>
+        </div>
+      </div>
+    `;
   });
 }
