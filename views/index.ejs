@@ -1,24 +1,52 @@
 <%- include("partials/header.ejs") %>
 
-<h1>Quote Finder</h1>
+<div class="hero-card p-4 p-md-5 mb-4">
+  <div class="row align-items-center">
+    <div class="col-lg-8">
+      <h1 class="display-6 fw-bold mb-3">Find famous quotes fast</h1>
+      <p class="lead text-muted mb-0">
+        Search quotes by keyword or browse by author. You can also manage authors and quotes from the admin area.
+      </p>
+    </div>
+    <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
+      <a href="/admin" class="btn btn-dark btn-lg">Open Admin Panel</a>
+    </div>
+  </div>
+</div>
 
-<form action="/searchByKeyword">
-  Keyword:
-  <input type="text" name="keyword">
-  <button>Search</button>
-</form>
+<div class="row g-4">
+  <div class="col-md-6">
+    <div class="card shadow-sm h-100">
+      <div class="card-body p-4">
+        <h2 class="h4 mb-3">Search by Keyword</h2>
+        <form action="/searchByKeyword" method="get">
+          <label class="form-label">Keyword</label>
+          <input type="text" name="keyword" class="form-control mb-3" placeholder="life, love, success..." required>
+          <button class="btn btn-primary w-100">Search Quotes</button>
+        </form>
+      </div>
+    </div>
+  </div>
 
-<br>
-
-<form action="/searchByAuthor">
-  <select name="authorId">
-    <% for (let a of authors) { %>
-      <option value="<%= a.authorId %>">
-        <%= a.firstName %> <%= a.lastName %>
-      </option>
-    <% } %>
-  </select>
-  <button>Search Author</button>
-</form>
+  <div class="col-md-6">
+    <div class="card shadow-sm h-100">
+      <div class="card-body p-4">
+        <h2 class="h4 mb-3">Search by Author</h2>
+        <form action="/searchByAuthor" method="get">
+          <label class="form-label">Author</label>
+          <select name="authorId" class="form-select mb-3" required>
+            <option value="">Select an author</option>
+            <% for (let a of authors) { %>
+              <option value="<%= a.authorId %>">
+                <%= a.firstName %> <%= a.lastName %>
+              </option>
+            <% } %>
+          </select>
+          <button class="btn btn-outline-primary w-100">Search Author</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
 <%- include("partials/footer.ejs") %>
