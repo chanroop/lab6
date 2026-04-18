@@ -1,1 +1,44 @@
+<%- include("partials/header.ejs") %>
 
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h1 class="h2 mb-0">Quotes</h1>
+  <a href="/quotes/new" class="btn btn-primary">Add New Quote</a>
+</div>
+
+<div class="card shadow-sm">
+  <div class="card-body p-0">
+    <div class="table-responsive">
+      <table class="table table-hover align-middle mb-0">
+        <thead class="table-light">
+          <tr>
+            <th>Quote</th>
+            <th>Author</th>
+            <th>Category</th>
+            <th>Likes</th>
+            <th class="text-end">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for (let q of quotes) { %>
+            <tr>
+              <td><%= q.quote %></td>
+              <td><strong><%= q.firstName %> <%= q.lastName %></strong></td>
+              <td><%= q.category %></td>
+              <td><%= q.likes %></td>
+              <td class="text-end">
+                <a href="/quotes/edit/<%= q.quoteId %>" class="btn btn-sm btn-outline-primary">Edit</a>
+                <form action="/quotes/delete/<%= q.quoteId %>" method="post" class="d-inline">
+                  <button class="btn btn-sm btn-outline-danger" onclick="return confirm('Delete this quote?')">
+                    Delete
+                  </button>
+                </form>
+              </td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<%- include("partials/footer.ejs") %>
