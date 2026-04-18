@@ -1,1 +1,25 @@
+<%- include("partials/header.ejs") %>
 
+<div class="hero-card p-4 p-md-5">
+  <h1 class="display-6 fw-bold mb-3">Admin Dashboard</h1>
+  <p class="lead text-muted mb-4">
+    Manage authors and quotes for your lab submission.
+  </p>
+
+  <div class="row g-3">
+    <div class="col-md-3">
+      <a href="/authors" class="btn btn-primary w-100 py-3">Manage Authors</a>
+    </div>
+    <div class="col-md-3">
+      <a href="/authors/new" class="btn btn-outline-primary w-100 py-3">Add Author</a>
+    </div>
+    <div class="col-md-3">
+      <a href="/quotes" class="btn btn-dark w-100 py-3">Manage Quotes</a>
+    </div>
+    <div class="col-md-3">
+      <a href="/quotes/new" class="btn btn-outline-dark w-100 py-3">Add Quote</a>
+    </div>
+  </div>
+</div>
+
+<%- include("partials/footer.ejs") %>
