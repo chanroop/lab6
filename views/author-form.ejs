@@ -1,1 +1,70 @@
+<%- include("partials/header.ejs") %>
 
+<div class="card shadow-sm">
+  <div class="card-body p-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h1 class="h2 mb-0"><%= pageTitle %></h1>
+      <a href="/authors" class="btn btn-outline-secondary">Back to Authors</a>
+    </div>
+
+    <form action="<%= formAction %>" method="post">
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label class="form-label">First Name</label>
+          <input type="text" name="firstName" class="form-control" value="<%= author.firstName || '' %>" required>
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label">Last Name</label>
+          <input type="text" name="lastName" class="form-control" value="<%= author.lastName || '' %>" required>
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label">Date of Birth</label>
+          <input type="date" name="dob" class="form-control" value="<%= author.dob || '' %>" required>
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label">Date of Death</label>
+          <input type="date" name="dod" class="form-control" value="<%= author.dod || '' %>">
+        </div>
+
+        <div class="col-md-4">
+          <label class="form-label">Sex</label>
+          <select name="sex" class="form-select" required>
+            <option value="">Select</option>
+            <option value="M" <%= author.sex === 'M' ? 'selected' : '' %>>M</option>
+            <option value="F" <%= author.sex === 'F' ? 'selected' : '' %>>F</option>
+            <option value="O" <%= author.sex === 'O' ? 'selected' : '' %>>O</option>
+          </select>
+        </div>
+
+        <div class="col-md-4">
+          <label class="form-label">Profession</label>
+          <input type="text" name="profession" class="form-control" value="<%= author.profession || '' %>" required>
+        </div>
+
+        <div class="col-md-4">
+          <label class="form-label">Country</label>
+          <input type="text" name="country" class="form-control" value="<%= author.country || '' %>" required>
+        </div>
+
+        <div class="col-12">
+          <label class="form-label">Portrait URL</label>
+          <input type="url" name="portrait" class="form-control" value="<%= author.portrait || '' %>" required>
+        </div>
+
+        <div class="col-12">
+          <label class="form-label">Biography</label>
+          <textarea name="biography" rows="5" class="form-control" required><%= author.biography || '' %></textarea>
+        </div>
+      </div>
+
+      <div class="mt-4">
+        <button class="btn btn-primary">Save Author</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<%- include("partials/footer.ejs") %>
